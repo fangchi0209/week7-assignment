@@ -29,7 +29,7 @@ def data_all():
     mycursor.execute("SELECT * FROM user WHERE username='%s'" % (sql_username))
     row=mycursor.fetchone()
     print(row)
-    if row[1] != None:
+    if row != None:
         return jsonify({"data":{
         "id": row[0],
         "name": row[1],
