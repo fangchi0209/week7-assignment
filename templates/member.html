@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>登入成功</title>
+    </head>
+    <body>
+        <h3>歡迎光臨, 這是會員頁</h3>
+    </br>{{session.id_name}}, 歡迎登入系統
+    </br><a href="http://127.0.0.1:3000/signout">登出系統</a>
+    
+        <p>查詢會員姓名</p>
+        <form action="/api/users" id="stop_direct" method="GET">
+        <input type="text" id="searchName" name="username"> <button onclick="search()">查詢</button>
+        </form>
+        <p>搜尋結果: <span id="resultName"></span></p>
+
+
+        <script>
+            document.getElementById("stop_direct").onclick= (event) => {
+                event.preventDefault()
+            }
+
+            function search() {
+                let username = document.getElementById("searchName").value
+                fetch("http://127.0.0.1:3000/api/users?username="+username, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                })
+                .then (res =>  {
+                    return res.json()
+                })
+                .then(d => {
+                    console.log(d.data)
+                    document.getElementById("resultName").innerHTML=d.data.name                
+  
+                })
+            }
+
+
+            
+
+
+        </script>
+    
+
+    </body>
+</html>
