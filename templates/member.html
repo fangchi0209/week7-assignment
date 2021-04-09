@@ -24,11 +24,7 @@
             function search() {
                 let username = document.getElementById("searchName").value
                 fetch("http://127.0.0.1:3000/api/users?username="+username, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                })
+                method: "GET",})
                 .then (res =>  {
                     return res.json()
                 })
